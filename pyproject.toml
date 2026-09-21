@@ -7,7 +7,11 @@ authors = [
     { name = "Pedro Luiz", email = "peuluiz.13@gmail.com" }
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "fastapi>=0.141.1",
+    "pydantic-settings>=2.15.0",
+    "uvicorn[standard]>=0.53.0",
+]
 
 [project.scripts]
 crm-api = "crm_api:main"
