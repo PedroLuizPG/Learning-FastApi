@@ -1,12 +1,13 @@
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Protocol
+from .schemas import TaskCreate,TaskUpdate
 
 
 @dataclass
 class Task:
     id: int
-    tittle: str
+    title: str
     done: bool
     created_at: datetime
     
@@ -18,7 +19,7 @@ class TaskRepository(Protocol):
     O Service nunca importa uma implementação concreta, só este Protocol.
     """
     
-    def find_all(self) -> list[Task]: ...
+    def findAll(self) -> list[Task]: ...
     def findById(self,id: int) -> Task | None: ...
     def create(self, data: TaskCreate) -> Task: ...
     def update(self, id:int, data: TaskUpdate) -> Task | None: ...
