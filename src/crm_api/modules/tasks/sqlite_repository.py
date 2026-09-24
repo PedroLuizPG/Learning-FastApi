@@ -31,7 +31,7 @@ class SqliteRepository:
         ).fetchone()
         conn.close()
         
-        return _row_to_task(row)
+        return _row_to_task(row) if row else None
     
     def create(self, data: TaskCreate) -> Task:
         conn = get_connection()
