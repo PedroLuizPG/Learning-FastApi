@@ -2,16 +2,17 @@ from crm_api.database.database import get_connection
 
 CREATE_TASKS_TABLE = """
     CREATE TABLE IF NOT EXISTS tasks(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id SERIAL PRIMARY KEY,
         title TEXT NOT NULL,
-        done  INTEGER NOT NULL DEFAULT 0,
-        created_at TEXT NOT NULL DEFAULT (datetime('now'))
+        done  BOOLEAN NOT NULL DEFAULT false,
+        created_at TIMESTAMP NOT NULL DEFAULT NOW()
     );
 """
 
 def run_migrations():
     conn = get_connection()
-    conn.execute(CREATE_TASKS_TABLE)
+    cursor = conn.cursor()
+    cursor.execute(CREATE_TASKS_TABLE)
     conn.commit()
     conn.close()
     print("✔ migrações aplicadas")

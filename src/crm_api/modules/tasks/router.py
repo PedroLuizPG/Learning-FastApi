@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from .schemas import TaskOut,TaskCreate,TaskUpdate
 from .service import TaskService
-from .sqlite_repository import SqliteRepository
+from .repository import PostgresRepository
 
 router = APIRouter(prefix="/tasks", tags=["tasks"])
 
@@ -9,7 +9,7 @@ router = APIRouter(prefix="/tasks", tags=["tasks"])
 # implementação CONCRETA (SqliteTaskRepository). É aqui, e só aqui,
 # que o contrato TaskRepository é "preenchido" por uma escolha real.
 
-service = TaskService(SqliteRepository())
+service = TaskService(PostgresRepository())
 
 @router.get("/", response_model=list[TaskOut])
 def listTasks():
